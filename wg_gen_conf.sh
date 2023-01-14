@@ -8,20 +8,35 @@ fi
 
 NAME=$1
 
-FILE=./address
-if [ ! -e "$FILE" ]
+ADDR_FILE=./address
+SUBN_FILE=./subnet
+if [ ! -e "$ADDR_FILE" ]
 then
-	echo Specify first address of subnet, that you would like to give to peers
+	echo Enter first address of subnet, that you would like to give to peers [10]:
 	read ADDRESS
-    	if ( $ADDRESS < 1 && $ADDRESS > 255)
+	if [ $ADDRESS=="" ]
+	then 
+		ADDRESS=10
+    	elif [ $ADDRESS < 1 && $ADDRESS > 255]
 	then
 		echo "First address out of range (1,255)"
 		exit 1
     	fi
-	echo $ADDRESS > ./address
+	echo $ADDRESS > $ADDR_FILE
 else 
-	ADDRESS=$(cat ./address)
+	ADDRESS=$(cat $ADDR_FILE)
 fi
+if [ ! -e "$SUBN_FILE" ]
+then
+	echo 'Enter subnet in format "X.X.X." . Only 24 masks permitted. [10.255.255.]:'
+	read SUBNET
+	if [ $SUBNET=="" ]
+	then
+		SUBNET='10.255.255.'
+	fi
+	echo $SUBNET > $SUBN_FILE
+fi
+
 exit 1
 wg-quick down wg0
 wg genkey | tee $NAME.key | wg pubkey > $NAME.pub
@@ -32,7 +47,7 @@ PUBLIC=$(cat $NAME.pub)
 cat > $NAME.conf << EOF
 [Interface]
 PrivateKey = $PRIVATE
-Address = 10.255.255.$ADDRESS/24
+Address = $SUBNET.$ADDRESS/24
 DNS = 1.1.1.1
 
 [Peer]
