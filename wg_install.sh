@@ -1,3 +1,4 @@
+#!/bin/sh
 echo Enter port for wireguard [ 51820 ]:
 read PORT
 if [ $PORT=="" ]
