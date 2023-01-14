@@ -41,7 +41,7 @@ SERV_PUB_KEY=$(cat /etc/wireguard/pulic.key)
 echo 'generating /etc/wireguard/wg0.conf'
 cat >> /etc/wireguard/wg0.conf << EOF
 [Interface]
-Address = $SUBNET/24
+Address = $ADDRESS/24
 SaveConfig = true
 PostUp = iptables -t nat -A POSTROUTING -o $INT_NAME -j MASQUERADE;
 PostDown = iptables -t nat -D POSTROUTING -o $INT_NAME -j MASQUERADE;
