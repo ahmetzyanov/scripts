@@ -6,11 +6,24 @@ then
   exit 1
 fi
 
-wg-quick down wg0
-
 NAME=$1
-ADDRESS=$(cat address)
 
+FILE=./address
+if [ ! -e "$FILE" ]
+then
+	echo Specify first address of subnet, that you would like to give to peers
+	read ADDRESS
+    	if ( $ADDRESS < 1 && $ADDRESS > 255)
+	then
+		echo "First address out of range (1,255)"
+		exit 1
+    	fi
+	echo $ADDRESS > ./address
+else 
+	ADDRESS=$(cat ./address)
+fi
+exit 1
+wg-quick down wg0
 wg genkey | tee $NAME.key | wg pubkey > $NAME.pub
 
 PRIVATE=$(cat $NAME.key)
