@@ -18,10 +18,18 @@ sh gen_root_ca.sh
 sudo su
 wg_gen_conf.sh
 ```
-<br />
+
 
 Скрипт, который генерирует конфиг, публичный и приватные ключи для WireGuard, перед работой удаляет интерфейс wg0, во время исполнений добавляет публичный ключ нового клиента в /etc/wireguard/wg0.conf и снова включает интерфейс. По стандарту выдает адреса из подсети 10.255.255.0/24.  <br />
 >Script, that generates config, public and private keys for WireGuard. It disables wg0 interface, adds peer's public key to /etc/wireguard/wg0.conf and after work enables wg0. By default gives address from 10.255.255.0/24 subnet. 
+```sh
+sudo su
+./wg_gen_conf.sh peers_name
+```
+<br />
+
+Скрипт, который скачивает и конфигурирует WireGuard. Автоматически создает конфиг с вашими параметрами и добавляет в iptables правила для NAT. ** Не разрешает подключения в файрволле! **  <br />
+>Script, installs and configure WireGuard. Automatically creates config with your parameters and adds rules for NAT to iptables. ** Script does not permit connection in firewall! **
 ```sh
 sudo su
 ./wg_gen_conf.sh peers_name
