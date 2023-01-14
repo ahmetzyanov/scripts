@@ -28,8 +28,8 @@ sudo su
 ```
 <br />
 
-Скрипт, который скачивает и конфигурирует WireGuard. Автоматически создает конфиг с вашими параметрами и добавляет в iptables правила для NAT. ** Не разрешает подключения в файрволле! **  <br />
->Script, installs and configure WireGuard. Automatically creates config with your parameters and adds rules for NAT to iptables. ** Script does not permit connection in firewall! **
+Скрипт, который скачивает и конфигурирует WireGuard. Автоматически создает конфиг с вашими параметрами и добавляет в iptables правила для NAT. Не разрешает подключения в файрволле!   <br />
+>Script, installs and configure WireGuard. Automatically creates config with your parameters and adds rules for NAT to iptables. Script does not permit connection in firewall! 
 ```sh
 sudo su
 ./wg_gen_conf.sh peers_name
