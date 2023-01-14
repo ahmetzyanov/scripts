@@ -1,5 +1,5 @@
 # RU | Здесь скрипты, которые позволят упростить жизнь в работе с Linux машинами. Пока что здесь следующие скрипты:
-> EN | There's some bash scripts, that i'm using to simplify my work with Linux servers. Btw there's common scripts:
+> ### EN | There's some bash scripts, that i'm using to simplify my work with Linux servers. Btw there's common scripts:
 <br /><br />
 
 ### gen_root_ca.sh
