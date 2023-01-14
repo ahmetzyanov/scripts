@@ -20,11 +20,12 @@ cat > $NAME.conf << EOF
 [Interface]
 PrivateKey = $PRIVATE
 Address = 10.255.255.$ADDRESS/24
+DNS = 1.1.1.1
 
 [Peer]
-PublicKey = +wWwgGASvN7AX6SIsWu9fxeQvaDk8THI/AWnJ41Zzx8=
+PublicKey = <place_your_server_pubkey_here>
 AllowedIPs = 0.0.0.0/0
-Endpoint = 51.210.63.162:51820
+Endpoint = <place_your_public_ip_here>:<port>
 PersistentKeepalive = 25
 EOF
 
